@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Escala do Culto • Vida Nova Ancuri</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .grupo {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #1ebc59;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Escala do Culto • Vida Nova</h1>
+
+<form>
+
+    <div class="grupo">
+        <label>Data do culto</label>
+        <input type="date" id="dataCulto">
+    </div>
+
+    <div class="grupo">
+        <label>Porteiro</label>
+        <select id="porteiro"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Diácono / Diaconisa 01</label>
+        <select id="diacono1"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Diácono / Diaconisa 02</label>
+        <select id="diacono2"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Acolhimento 01</label>
+        <select id="acolhimento1"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Acolhimento 02</label>
+        <select id="acolhimento2"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Tia da Salinha 01</label>
+        <select id="salinha1"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Tia da Salinha 02</label>
+        <select id="salinha2"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Pregador</label>
+        <select id="pregador"></select>
+    </div>
+
+    <div class="grupo">
+        <label>Mídias</label>
+        <select id="midias"></select>
+    </div>
+
+    <button type="button" onclick="gerarMensagem()">Enviar escala no WhatsApp</button>
+
+</form>
+
+<script>
+    const membros = [
+        "Irmã Adriane",
+        "Irmã Alycia",
+        "Irmã Amanda",
+        "Irmã Andréa",
+        "Irmão Artemildo",
+        "Irmão Arthur",
+        "Irmã Beatrice",
+        "Irmão Caoan",
+        "Irmã Carol",
+        "Irmã Clara",
+        "Convidado(a)",
+        "Irmã Dalva",
+        "Irmã Damiana",
+        "Irmã Deuziane",
+        "Irmã Edilene",
+        "Irmã Edlanny",
+        "Irmã Fátima",
+        "Irmão Gabriel",
+        "Irmã Glaudenia",
+        "Irmã Gorete",
+        "Irmã Ieuda",
+        "Irmão Igor",
+        "Irmã Ivana",
+        "Irmã Jamille",
+        "Irmão Jhonattan",
+        "Irmã Joana D'arc",
+        "Irmão Jobson",
+        "Irmã Joice",
+        "Irmã Juliana",
+        "Irmã Kecinha",
+        "Irmã Liduina",
+        "Irmã Lucimar",
+        "Irmã Maiza",
+        "Irmão Marcílio",
+        "Irmão Marcos",
+        "Irmã Marli",
+        "Irmão Meton",
+        "Irmã Natália",
+        "Irmão Pedro",
+        "Pr. Ednaldo",
+        "Pr. Ítalo",
+        "Prª. Marília",
+        "Prª. Socorrinha",
+        "Irmã Priscila",
+        "Irmão Rafael",
+        "Irmão Rafaelzinho",
+        "Irmã Riviane",
+        "Irmão Roger",
+        "Irmão Rogério",
+        "Irmã Sayane",
+        "Irmã Sayonara",
+        "Irmã Vitória",
+        "Irmão Wagner",
+        "Irmão Walter",
+        "Irmão Wladison",
+        "Irmã Yonara",
+        "Irmã Yorrana",
+        "Irmão Zé (José Ilton)",
+    ];
+
+    const selects = document.querySelectorAll("select");
+
+    function preencherSelects() {
+        selects.forEach(select => {
+            select.innerHTML = `<option value="">Selecione...</option>`;
+            membros.forEach(nome => {
+                const option = document.createElement("option");
+                option.value = nome;
+                option.textContent = nome;
+                select.appendChild(option);
+            });
+        });
+    }
+
+    function atualizarOpcoes() {
+        const escolhidos = Array.from(selects)
+            .map(s => s.value)
+            .filter(v => v !== "");
+
+        selects.forEach(select => {
+            Array.from(select.options).forEach(option => {
+                if (
+                    option.value &&
+                    escolhidos.includes(option.value) &&
+                    option.value !== select.value
+                ) {
+                    option.disabled = true;
+                } else {
+                    option.disabled = false;
+                }
+            });
+        });
+    }
+
+    selects.forEach(select => {
+        select.addEventListener("change", atualizarOpcoes);
+    });
+
+    preencherSelects();
+
+    function formatarData(data) {
+        const [ano, mes, dia] = data.split("-");
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    function gerarMensagem() {
+        const dataInput = document.getElementById("dataCulto").value;
+
+        if (!dataInput) {
+            alert("Selecione a data do culto.");
+            return;
+        }
+
+        for (const select of selects) {
+            if (!select.value) {
+                alert("Preencha todos os campos da escala.");
+                return;
+            }
+        }
+
+        let mensagem =
+`*ESCALA DESSE DOMINGO*
+> Data: ${formatarData(dataInput)}
+
+*PORTEIRO:*
+- _${porteiro.value}_
+
+*DIÁCONO / DIACONISA:*
+- _${diacono1.value}_
+- _${diacono2.value}_
+
+*ACOLHIMENTO:*
+- _${acolhimento1.value}_
+- _${acolhimento2.value}_
+
+*TIA DA SALINHA:*
+- _${salinha1.value}_
+- _${salinha2.value}_
+
+*PREGADOR:*
+- _${pregador.value}_
+
+*MÍDIAS:*
+- _${midias.value}_
+`;
+
+        const texto = encodeURIComponent(mensagem);
+        const url = `https://wa.me/5585997734817?text=${texto}`;
+
+        window.open(url, "_blank");
+    }
+</script>
+
+</body>
+</html>

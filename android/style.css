@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    }
+
+body {
+    margin: 0;
+    padding: 0;
+    }
+
+    /* CONTAINER COM A ARTE */
+    .planodefundo {
+        width: auto;
+        height: 1215px;
+        background: url('../imagens/form-sem-dados.jpg') no-repeat top center;
+        background-size: contain;
+        }
+
+        /* FORM SOBRE A IMAGEM */
+        .formulario {
+            padding-top: 85px;
+            width: 960px;
+            height: 1130px;
+            }
+
+            /* CAMPOS INVISÍVEIS */
+            .campo {
+                margin: 0px 0px 0px 100px;
+                font-family: "Roboto", sans-serif;
+                width: 180px;
+                height: 40px;
+                background: none;
+                border: none;
+                font-size: 18px;
+                color: #4788a6;
+                display: block;
+                }
+
+            /* DATA */
+            .data {
+                margin: -27px 0px 0px 116px;
+                width: 182px;
+                height: 50px;
+                color: #4788a6;
+                font-size: 20px;
+                font-family: "Shrikhand", serif;
+                font-weight: 400;
+                font-style: normal;
+                transform: rotate(-09deg);
+                border: none;
+                background: none;
+                display: block;
+                }
+
+                /* POSIÇÕES — AJUSTADAS À ARTE */
+                .portaria {
+                    margin: 39px 20px 0px -137px;
+                    }
+
+                .acolhimento1 {
+                    margin: 74px 20px 0px -200px;
+                    }
+
+                .acolhimento2 {
+                    margin: 107px 20px 0px -200px;
+                    }
+
+                .diaconia1 {
+                    margin: 141px 20px 0px -200px;
+                    }
+
+                .diaconia2 {
+                    margin: 175px 20px 0px -200px;
+                    }
+
+                .salinha1 {
+                    margin: 208px 20px 0px -200px;
+                    }
+
+                .salinha2 {
+                    margin: 242px 20px 0px -200px;
+                    }
+
+                .pregacao {
+                    margin: 275px 20px 0px -200px;
+                    }
+
+                .midias {
+                    margin: 308px 20px 0px -200px;
+                    }
+
+                .tema {
+                    margin: 371px 0px 0px -308px;
+                    width: 290px !important;
+                    height: 40px;
+                    text-align: center;
+                    font-family: "Roboto", sans-serif;
+                    background: none;
+                    border: none;
+                    font-size: 18px;
+                    color: #4788a6;
+                    display: block;
+                    font-weight: bold;
+                    }
+
+            /* BOTÃO */
+            .btn-enviar {
+                position: absolute;
+                bottom: 40px;
+                z-index: 100;
+                left: 40px;
+                width: 300px;
+                height: 45px;
+                border-radius: 12px;
+                border: none;
+                background: #25d366;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                }
